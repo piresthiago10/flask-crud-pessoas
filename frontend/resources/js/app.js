@@ -48,7 +48,11 @@ const app = new Vue({
             setTimeout(() => { this.successMessage = '' }, 5000);
         },
         validaPessoa: function () {
-            if (!this.pessoa.nome) {
+            const regex = /[0-9]/;
+            if (regex.test(this.pessoa.nome)){
+                this.informaErro('Campo Nome Completo deve conter apernas letras')
+            }
+            else if (!this.pessoa.nome) {
                 this.informaErro('Campo Nome Completo vazio')
             }
             else if (!this.pessoa.rg) {
