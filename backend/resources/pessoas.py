@@ -76,8 +76,8 @@ class Pessoa(Resource):
                 return gera_response(200, "pessoa", pessoa_json)
             except Exception:
                 return gera_response(500, "pessoa", {},
-                                     """Ocorreu um erro interno ao
-                                    tentar atualizar a pessoa.""")
+                                     "Ocorreu um erro interno ao "
+                                     "tentar atualizar a pessoa.")
 
         return gera_response(404, "pessoa", {},
                              "Não foi localizada nenhuma pessoa.")
@@ -91,7 +91,7 @@ class Pessoa(Resource):
                 return gera_response(204, "pessoa", {})
             except Exception:
                 return gera_response(500, "pessoa", {},
-                                     """Ocorreu um erro interno ao
-                                    tentar excluir a pessoa.""")
+                                     "Ocorreu um erro interno ao "
+                                     "tentar excluir a pessoa.")
         return gera_response(404, "pessoa", {},
                              "Não foi localizada nenhuma pessoa.")
