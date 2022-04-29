@@ -117,7 +117,6 @@ const app = new Vue({
                 "data_admissao": this.pessoa.dataAdmissao,
                 "funcao": this.removeEspacosDoComecoEFimDeString(this.pessoa.funcao)
             }
-            console.log(data)
             try {
                 if (this.error == false) {
                     await axios.post(this.apiUrl + 'pessoas', data)
@@ -126,7 +125,6 @@ const app = new Vue({
                     this.getPessoas()
                 }
             } catch (error) {
-                console.log(error)
                 this.informaErro('Não foi possível realizar o cadastro. Consulte o nosso atendimento para mais detalhes.')
             }
         },
