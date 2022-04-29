@@ -5,8 +5,7 @@ from flask_restful import Api
 from resources.pessoas import Pessoa, Pessoas
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://thiagosantos:dGhpYWdvc2Fu@" \
-    "jobs.visie.com.br:3306/thiagosantos"
+app.config['SQLALCHEMY_DATABASE_URI'] = ''
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 CORS(app)
 api = Api(app)
