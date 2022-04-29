@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"
+        integrity="sha512-6PM0qYu5KExuNcKt5bURAoT6KCThUmHRewN3zUFNaoI6Di7XJPTMoT6K0nsagZKk2OB4L7E3q1uQKHNHd4stIQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    <link href="./resources/css/style.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="main-header-container">
+            <h5 class="main-logo">Painel de Pessoas</h5>
+        </div>
+        <div class="container">
+            <div class="center">
+                <h4>Listagem de Pessoas </h4><br>
+            </div>
+            <div v-if="success">
+                <div class="center message-success">
+                    {{ successMessage }}
+                </div>
+            </div>
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Data de Admissão</th>
+                    <th>Opções</th>
+                </tr>
+                <tr v-for="pessoa in pessoas">
+                    <td>{{ pessoa.nome | primeiroNome }}</td>
+                    <td>{{ pessoa.dataAdmissao | dataAdmissao}}</td>
+                    <td><a @click="getPessoa(pessoa.idPessoa)"><i class="fa-solid fa-pen m-x"></i></a>
+                        <a @click="deletePessoa(pessoa.idPessoa)"><i class="fa-solid fa-trash-can m-x"></i></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="container">
+            <div class="center">
+                <div v-if="isUpdate">
+                    <h4>Atualização de Pessoa</h4><br>
+                </div>
+                <div v-else>
+                    <h4>Cadastro de Pessoa</h4><br>
+                </div>
+            </div>
+            <div v-if="error">
+                <div class="center message-error">
+                    {{ errorMessage }}
+                </div>
+            </div>
+            <form class="form-content" @submit.prevent="">
+                <label for="nome">Nome Completo:</label>
+                <input v-model="pessoa.nome" type="text" id="nome" name="nome" placeholder="Ex.: Nome e Sobrenome"><br>
+                <label for="rg">RG:</label>
+                <input v-mask="'##.###.###-#'" v-model="pessoa.rg" type="text" id="rg" name="rg"
+                    placeholder="Ex.: 00.000.000-0"><br>
+                <label for="cpf">CPF:</label>
+                <input v-mask="'###.###.###-##'" v-model="pessoa.cpf" type="text" id="cpf" name="cpf"
+                    placeholder="Ex.: 000.000.000-00"><br>
+                <label for="data_nascimento">Data de Nascimento:</label>
+                <input v-model="pessoa.dataNascimento" type="date" id="data_nascimento" name="data_nascimento"><br>
+                <label for="data_admissao">Data de Admissão:</label>
+                <input v-model="pessoa.dataAdmissao" type="date" id="data_admissao" name="data_admissao"><br>
+                <label for="funcao">Função:</label>
+                <input v-model="pessoa.funcao" type="text" id="funcao" name="funcao"
+                    placeholder="Ex.: Cargo desempenhado pela pessoa"><br>
+                <div v-if="isUpdate">
+                    <div class="center">
+                        <button @click="putPessoa()" type="submit" value="Salvar">Atualizar</button>
+                        <button @click="limparFormulario()" value="Cancelar">Cancelar</button>
+                    </div>
+                </div>
+                <div v-else>
+                    <div class="center">
+                        <button @click="postPessoa()" type="submit" value="Salvar">Cadastrar</button>
+                        <button @click="limparFormulario()" value="Cancelar">Cancelar</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/v-mask/2.0.1/v-mask.min.js"
+        integrity="sha512-CkTt3uvVyl/Jh5WRxXDutyvzI40vj0nb0V1RNW0MwSf/qxMu28OmGMlKWfw1/UZ38vpw2zJgfH84XC/TyDvwjQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./resources/js/app.js"></script>
+</body>
+
+</html>
