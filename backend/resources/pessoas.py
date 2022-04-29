@@ -35,7 +35,9 @@ class Pessoa(Resource):
     argumentos = reqparse.RequestParser()
     argumentos.add_argument('nome', type=str, required=True,
                             help="O campo 'nome' não pode estar vazio.")
-    argumentos.add_argument('rg', type=str, required=True,
+    argumentos.add_argument('rg',
+                            type=inputs.regex('^\d{2}\.\d{3}\.\d{3}\-\d{1}$'),
+                            required=True,
                             help="O campo 'rg' não pode estar vazio.")
     argumentos.add_argument('cpf',
                             required=True,
