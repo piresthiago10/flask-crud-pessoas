@@ -34,12 +34,13 @@ source venv/bin/activate
 ```
 pip install -r requirements.txt
 ```
-5. Execute o projeto:
+5. Adicione app.config['SQLALCHEMY_DATABASE_URI']
+6. Execute o projeto:
 ```
 python3 backend/app.py  
 ```
 ### Frontend
-6. Abra o arquivo index.html:
+7. Abra o arquivo index.html:
 
 ## Endpoints:
 
